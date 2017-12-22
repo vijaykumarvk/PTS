@@ -1,0 +1,29 @@
+<!Doctype html>
+<html>
+    <head>
+       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+    </head>
+    <body>
+        <button onclick="edit1()">Edit</button>
+        <button onclick="delete1()">Delete</button>
+        <button onclick="signout1()">Signout</button>
+        <p id="demo"></p>
+        <script>
+            function delete1(){
+                $.post("/delete",
+                function(data,status){
+                    if(data=="deleted successfully"){
+                        $("#demo").text(data);
+                        location.href="signin";
+                    }
+                });
+            }
+            function signout1(){
+                location.href="/signout";
+            }
+            function edit1(){
+               location.href="/edit";
+            }
+        </script>
+    </body>
+</html>

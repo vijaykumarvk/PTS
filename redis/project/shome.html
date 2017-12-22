@@ -1,0 +1,170 @@
+<!doctype html>
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <title>SCHOOL MANAGEMENT</title>
+        <link rel="stylesheet" type="text/css" href="https://vijaykumar-7336.zcodeusers.com/project/shome.css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+         <script src="https://vijaykumar-7336.zcodeusers.com/project/school_frontpage.js"></script>
+         <script>
+         $(document).ready(function(){
+               cookies=document.cookie.split("=");
+                    $.get("/cookieGet",{
+                        Email:cookies[1]
+                    },function(data,status){
+                       data = JSON.parse(data);
+                       $("#stuname").text(data.Name);
+                       $("#classlett").text("Class: "+data.Class);
+                       $("#hidden").text(data.email);
+                       $("#semai").text(document.cookie.split("=")[1]);
+                       $.get("/cookieGet",{
+                           Email:data.email
+                       },function(data,status){
+                           data=JSON.parse(data);
+                           $("#SName").text(data.Name);
+                       });
+                    });
+         });
+         </script>
+    </head>
+    <body>
+        <main>
+            <header>
+                <img class="logo" src="https://vijaykumar-7336.zcodeusers.com/project/image/content.png"/>
+                <h2 id="SName"></h2>
+                <span id="hidden" style="display:none"></span>
+                <i class="fa fa-user-circle-o font" aria-hidden="true"></i>
+                <sapn class="clear"></sapn>
+            </header>
+            <div class="empty"></div>
+                <div class="profile">
+                    <aside class="as">
+                        <i class="fa fa-user-circle-o font st" aria-hidden="true"></i>
+                    </aside>
+                    <aside class="as as1">
+                        <p class="p2" id="stuname">Student Name</p>
+                        <p class="p2 p3" id="semai"></p>
+                    </aside>
+                    <div class="butdiv">
+                        <button class="but4">Sign Out</button>
+                    </div>
+                </div>
+            <div class="cont">
+                <nav>
+                    <ul>
+                        <li id="myclasss">My Class</li>
+                        <li id="leaves">Leave request</li>
+                        <li id="tables">Time Table</li>
+                        <li id="homepost">Posts</li>
+                    </ul>
+                </nav>
+                <div class=" box box1" id="box3">
+                    <div class="timetable">
+                        <table class="table1">
+                             <tr>
+                                <th>Days</th>
+                                <th>1</th>
+                                <th>2</th>
+                                <th>3</th>
+                                <th>4</th>
+                                <th>5</th>
+                                <th>6</th>
+                                <th>7</th>
+                                <th>8</th>
+                            </tr>
+                            <tr>
+                                <td>Monday</td>
+                                <td id="W1">subject</td>
+                                <td id="W2">subject</td>
+                                <td id="W3">subject</td>
+                                <td id="W4">subject</td>
+                                <td id="W5">subject</td>
+                                <td id="W6">subject</td>
+                                <td id="W7">subject</td>
+                                <td id="W8">subject</td>
+                            </tr>
+                            <tr>
+                                <td>Tuesday</td>
+                               <td id="U1">subject</td>
+                                <td id="U2">subject</td>
+                                <td id="U3">subject</td>
+                                <td id="U4">subject</td>
+                                <td id="U5">subject</td>
+                                <td id="U6">subject</td>
+                                <td id="U7">subject</td>
+                                <td id="U8">subject</td>
+                            </tr>
+                            <tr>
+                                <td>Wednesday</td>
+                                <td id="X1">subject</td>
+                                <td id="X2">subject</td>
+                                <td id="X3">subject</td>
+                                <td id="X4">subject</td>
+                                <td id="X5">subject</td>
+                                <td id="X6">subject</td>
+                                <td id="X7">subject</td>
+                                <td id="X8">subject</td>
+                            </tr>
+                            <tr>
+                                <td>Thurday</td>
+                                <td id="Y1">subject</td>
+                                <td id="Y2">subject</td>
+                                <td id="Y3">subject</td>
+                                <td id="Y4">subject</td>
+                                <td id="Y5">subject</td>
+                                <td id="Y6">subject</td>
+                                <td id="Y7">subject</td>
+                                <td id="Y8">subject</td>
+                            </tr>
+                            <tr>
+                                <td>Friday</td>
+                                <td id="Z1">subject</td>
+                                <td id="Z2">subject</td>
+                                <td id="Z3">subject</td>
+                                <td id="Z4">subject</td>
+                                <td id="Z5">subject</td>
+                                <td id="Z6">subject</td>
+                                <td id="Z7">subject</td>
+                                <td id="Z8">subject</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div  class="box1 box3" id="box5">
+                 <p id="acceptleave" style="display:none"></p>
+                     <table class="table1 table2" id="stable">
+                        <tr>
+                            <th class="th1">Date</th>
+                           <!-- <th class="th1">To</th>-->
+                            <th class="th1">description</th>
+                            <th class="th1">Submit</th>
+                        </tr>
+                        <tr>
+                            <td class="th1"><input id="dayes" type="date"></td>
+                           <!-- <td class='th1'><input id="dayes1" type="date"></td>-->
+                            <td class="th1"><input id="reason" type="text"/></td>
+                            <td class="th1">
+                                <button class="but1" id='btn2'>Submit</button>
+                            </td>
+                        </tr>
+                    </table>
+                    <p id="leavealert"></p>
+                </div>
+                <div class="box1 box5" id="box1">
+                    <p id="classlett"></p><br>
+                    <p id="classteacher"></p><br>
+                    <table class="table1 table2 table3">
+                        <tr>
+                            <th>Subject Name</th>
+                            <th>Teacher Name</th>
+                        </tr>
+                        <tr>
+                            <th>jhddf</th>
+                            <th>jdf</th>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </body>
+</html>

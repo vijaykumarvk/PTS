@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <title>SCHOOL MANAGEMENT</title>
+        <link rel="stylesheet" type="text/css" href="https://vijaykumar-7336.zcodeusers.com/project/student.css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+         <script src="https://vijaykumar-7336.zcodeusers.com/project/school_frontpage.js"></script>
+        <script>
+            $(function(){
+               $.get('/cookieGet',{
+                    "Email":document.cookie.split("=")[1]
+                },function(data,status){
+                    data=JSON.parse(data);
+                    $("#p3").text(data.Name);
+                    $("#2h2").text(data.email);
+                    $.get("/cookieGet",{"Email":data.email},function(data,status){
+                       data=JSON.parse(data);
+                       $("#1h2").text(data.Name);
+                    });
+                });
+                $("#p3").text(document.cookie.split("=")[1]);
+            });
+        </script>
+    </head>
+    <body>
+        <main>
+            <header>
+                <img class="logo" src="https://vijaykumar-7336.zcodeusers.com/project/image/content.png"/>
+                <h2 id="1h2"><i> School MANAGEMENT</i></h2>
+                <span id="2h2" style="display:none">lkjlklklk</span>
+                <i class="fa fa-user-circle-o font" aria-hidden="true"></i>
+                <!--<div id="noti"></div>-->
+                <sapn class="clear"></sapn>
+            </header>
+                <div class="profile">
+                    <aside class="as">
+                        <i class="fa fa-user-circle-o font st" aria-hidden="true"></i>
+                    </aside>
+                    <aside class="as as1">
+                        <p class="p2 p3" id="p3">Email id</p>
+                    </aside>
+                    <div class="butdiv">
+                        <button class="but4" id="but4">Sign Out</button>
+                    </div>
+                </div>
+            <div class="cont">
+                <nav>
+                    <ul>
+                        <li id="meet">PT Meeting</li>
+                        <li id="kids">Kids Leave</li>
+                        <li id="leavereq">kids leave request</li>
+                        <li id="homepost">Posts</li>
+                    </ul>
+                </nav>
+                <div class="box1 box">
+                    <table class="table1 table2" id="ptmeet">
+                        <tr>
+                            <th class="th1">Teacher Email</th>
+                            <th class="th1">Date</th>
+                            <th class="th1">Time</th>
+                        </tr>
+                        <tr>
+                            <td class="th1" id="a1">1</td>
+                            <td class="th1" id="b1">vijay</td>
+                            <td class="th1" id="c1">vijaykumar</td>
+                        </tr>
+                    </table>
+                    <p id="P1">Send request to your kids teachers</p>
+                    <button id="sendreq" ></button>
+                    <button id="sendreq1"></button>
+                    <p id="detailtell" ></p>
+                </div>
+                <div id="hidenotifi"></div>
+                <div class=" box1 box2" id="kidclass">
+                    <p class="p1" style="font-size:20px;margin-top:50px;margin-left:-20px">View your kids leave list by clicking </p><br><br>
+                     <button id="sendreq2" ></button>
+                     <button id="sendreq3"></button>
+                </div>
+                <div class="box1 box3" style="display:none">
+                    Teacher Email<input id="req1" type="text"><br><br><br>
+                    Description<input id="req2" type="text"><br><br><br>
+                    <input id="req5" type="text"/>
+                    <input id="req6" type="text"/>
+                    <button id="req3">send</button>
+                    <p id="req4"></p>
+                </div>
+                <div class="box1 box4" style="display:none">
+                    <table class="table1 table2"></table>
+                </div>
+            </div>
+        </main>
+    </body>
+</html>

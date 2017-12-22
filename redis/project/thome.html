@@ -1,0 +1,581 @@
+<!doctype html>
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <title>SCHOOL MANAGEMENT</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+         <link rel="stylesheet" type="text/css" href="https://vijaykumar-7336.zcodeusers.com/project/student.css"/>
+          <script src="https://vijaykumar-7336.zcodeusers.com/project/school_frontpage.js"></script>
+    <script>
+       $(document).ready(function(){
+        $("#email5").text(document.cookie.split("=")[1]);
+        setTimeout(cookie,100);
+       $(".black").click(function(){
+           $(".black,.popup").hide();
+        });
+      $("#leave").click(function(){
+           $("#leave").text("Leave request");
+               $.post("/stuleave",{Email:document.cookie.split("=")[1]},function(data,status){
+                        $("#leaveacc").show();
+                        $("#myCLass").hide();
+                       if(data==null||data.length==0){
+                        $("#tabletime").html("");
+                        $("#tabletime").text("you have no leave request");   
+                       }
+                       else{
+                           data=JSON.parse(data);
+                           data=JSON.parse(data);
+                           if(data!==null){
+                           ab="<tr><th class='th'>Student Name</th><th class='th'>Reason</th><th class='th'>Days</th><th class='th'>Accept</th></tr>";
+                           bc="";
+                           keys=Object.keys(data);
+                            for(i=0;i<keys.length;i++){
+                                bc+='<tr><td class="th">'+data[keys[i]].Name+'</td><td class="th">'+data[keys[i]].Reason+'</td><td class="th">'+data[keys[i]].Days+'</td><td class="th"><button class="but1 ab" onclick=vijay("'+keys[i]+'","'+data[keys[i]].Days+'","'+data[keys[i]].Name+'","'+data[keys[i]].Email+'") id='+keys[i]+'>Allow</button><button class="but1 but2 ac" onclick=vijay1("'+keys[i]+'","'+data[keys[i]].Email+'") id='+keys[i]+'a>Deny</button></td></tr>';
+                            }
+                            $("#tabletime").html("");
+                            $("#tabletime").html(ab+bc+"</table>");
+                           }
+                        }
+                 });
+                $(".box2").show()
+                $(".box,.box3").hide();
+      });
+     $("#myclass").click(function(){
+         $("#leaveacc,.box3,.box4,.box").hide();
+         $("#myCLass").show();
+     });
+     $("#parent").click(function(){
+         if($(this).text()=="Parent Meeting"){
+             $("#ptme").html("<table><tr><th class='th'>Check</th><th class='th'>Parent Name</th><th class='th'>Student Name</th><th class='th'>description</th></tr></table>");
+             $(".box3").show();
+             $(".box2,.box,#myCLass,.box4").hide();
+         }
+         else if($(this).text()!=="Parent Meeting"){
+             html1="<table><tr><th class='th'>Check</th><th class='th'>Parent Name</th><th class='th'>Student Name</th><th class='th'>description</th></tr>";
+            html2="";
+            $.get("/notifi",function(data,status){
+                cookies=document.cookie.split("=")[1];
+                array=cookiies(data);
+                data=JSON.parse(data);
+                for(i=0;i<array.length;i++){
+                    a1=JSON.parse(data[array[i]]);
+                    html2="<tr><th class='th'><input type='checkbox' class='check' onclick=check1('"+a1.Email+"')></th><th class='th'>"+a1.PName+"</th><th class='th'>"+a1.STName+"</th><th class='th'>"+a1.Description+"</th></tr>"
+                }
+                $("#ptme").html(html1+html2+"</table>");
+                $(".box3").show();
+                $(".box2,.box,#myCLass,.box4").hide();
+            }); 
+         }
+         $(this).text("Parent Meeting");
+     });
+     $("#time").click(function(){
+          class1=Number($("#classn").text().substring(7,$("#classn").text().length));
+          word2=$("#scname").text();
+          a1=["W","U","X","Y","Z"];
+          $.get("/timeTable",function(data,status){
+          if(class1>=1&&class1<=12){
+              if(class1==1){
+                 class1=class1+"st_class";
+              }
+              else if(class1==2){
+                  class1=class1+"nd_class";
+              }
+              else if(class1==3){
+                  class1=class1+"rd_class";
+              }
+              else{
+                  class1=class1+"th_class";
+              }
+        if(data!==null){
+          data=JSON.parse(data);
+          data1=data[word2+"."+class1];
+          if(data1!==undefined){
+              i1=0;
+              var array=data1.split("*");
+              for(j=0;j<a1.length;j++){
+                    for(i=1;i<9;i++){
+                        $("#"+a1[j]+i).text(array[i1]);
+                         i1++;
+                    }
+               }
+          }
+          else{
+              $(".timetable").html("<b>Your class time table is not assigned");
+          }
+        }
+          else{
+               $(".timetable").html("<b>Your class time table is not assigned");
+          }
+        }
+        else{
+            $(".timetable").html("<b>You are not a class teacher or class is not assigned to you");
+        }
+        $("#myCLass,.box2,.box3,.box4").hide();
+        $("#times").show();
+        });
+});
+$("#profile1").click(function(){
+   $(".profile").show();
+   event.stopPropagation();
+});
+$("body").click(function(){
+    $(".profile").hide(); 
+});
+$(".but4").click(function(){
+   location.href="/signout"; 
+});
+});
+function vijay(n,m,o,p){
+     $.post("/leaacc",{"Email":document.cookie.split("=")[1],"key":n,"Class":$("#classn").text().substring(7,$("#classn").text().length),"Date":m,"Student":p,"email":p},function(data,status){
+        location.href="/logint"; 
+     });
+}
+function vijay1(x,y){
+    $.post("/deny",{"key":x,"email":y,"Email":document.cookie.split("=")[1]},function(data,status){
+       location.href="/logint";
+    });
+}
+ function cookie(){
+                    cookies=document.cookie.split("=");
+                    $.get("/cookieGet",{
+                        Email:cookies[1]
+                    },function(data,status){
+                       data = JSON.parse(data);
+                       $("#classt").text("Teacher name:  "+data.Name);
+                       $("#subjectName").text("subject:  "+data.Subject);
+                       if(data.Class==""){
+                         $("#classn").text("Class: Not assined or Not a class teacher");  
+                       }
+                       else{
+                         $("#classn").text("Class: "+data.Class);
+                       }
+                       $.get("/cookieGet",{Email:data.email},function(data,status){
+                           data=JSON.parse(data);
+                           $("#scname").text(data.Name);
+                       });
+                       $.post("/stuleave",{Email:cookies[1]},function(data,status){
+                       if(data=="empty"){
+                           $("#leave").text("Leave request");
+                       } 
+                       else{
+                           data=JSON.parse(data);
+                           data=JSON.parse(data);
+                           data1=data;
+                           if(data1!==null){
+                           keys=Object.keys(data1);
+                           if(keys.length>0){
+                           $("#leave").html("Leave request "+'<p style="color:red;float:right">'+keys.length+'</p>');
+                           }
+                           }
+                       }
+                       });
+                    });
+                    cookiie();
+            }
+            function cookiie(){
+                  $.get("/notifi",function(data,status){
+                           cookies=document.cookie.split("=")[1];
+                           if(data!=="no"){
+                               array=cookiies(data);
+                               if(array.length>0){
+                                   $("#parent").html("Parent Meeting "+'<p style="color:red;float:right">'+array.length+'</p>'); 
+                               }
+                               else{
+                                   $("#parent").text("Parent Meeting");
+                               }
+                           }
+                           else{
+                                $("#parent").text("Parent Meeting");
+                           }
+                       });
+            }
+            function cookiies(x){
+                data=x,array=[];
+                data=JSON.parse(data);
+                               keys= Object.keys(data);
+                               for(i=0;i<keys.length;i++){
+                                   if(data[keys[i]].indexOf(cookies)!==-1){
+                                     array.push(keys[i]);
+                                   }
+                               }
+                return array;
+            }
+            function check1(x){
+                $(".black,.popup").show();
+                $("#ok").click(function(){
+                if($("#input1").val()!==""&&$("#input2").val()!==""){
+                 $.post("/ptaccept",{"Email":x,"email":document.cookie.split("=")[1],"Date":$("#input1").val(),"Time":$("#input2").val(),"Emails":document.cookie.split("=")[1]+"."+x},function(data,status){
+                     $(".black,.popup").hide();
+                     location.href = "/logint";
+                 });
+                }
+                else{
+                    alert("Enter the date and time");
+                }
+                });
+                $("#cancel").click(function(){
+                     $.post("/ptaccept",{"Email":x,"Emails":document.cookie.split("=")[1]+"."+x},function(data,status){
+                         $(".black,.popup").hide();
+                         location.href = "/logint";
+                 });
+                });
+            }
+    </script>
+<style>
+*{
+    margin:0px;
+    padding:0px;
+}
+body,html{
+    width:100%;
+    height:100%;
+    font-family:sans-serif;
+}
+main{
+    width:100%;
+    height:100%;
+    border: 1px solid transparent;
+    box-sizing: border-box;
+    position:relative;
+}
+header{
+    padding: 0px 10px;
+    background:#3da7ff;
+}
+.logo{
+    width: 60px;
+    vertical-align: middle;
+}
+h2{
+    display: inline-block;
+    font-family:sans-serif;
+    color:#fff;
+}
+.rig{
+    float: right;
+}
+.clear{
+    clear:right;
+}
+.clr1{
+    color: #ec0014;
+}
+.clr2{
+    color: #185898;
+}
+.clr3{
+    color: #6db827;
+}
+.font{
+    font-size: 30px !important;
+    padding: 11px;
+    float: right;
+    color: #fff;
+    cursor: pointer;
+}
+.cont{
+    height: calc(100% - 56px);
+    display:flex;
+}
+#leaveacc{
+    display:none;
+}
+nav{
+    width: 16%;
+    border-right: 1px solid gray;
+    height: 100%;
+}
+ul{
+    list-style-type: none;
+}
+li:hover{
+    background-color: #3da7ff;
+    color: #fff;
+}
+li{
+    text-align: left;
+    padding: 15px 15px 15px 32px;
+    cursor:pointer;
+}
+.box1{
+    width:84%;
+    height:100%;
+    display:none;
+}
+.timetable{
+    margin-top:2em;
+    background-color:#fff;
+    border:1px solid transparent;
+    box-sizing:border-box;
+    text-align:center;
+}
+.userdiv{
+    position: absolute;
+    right: 1px;
+    display:none;
+}
+.table1{
+    width:98%;
+    margin: 15px auto;
+}
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 20px;
+    text-align: center;
+}
+.box2{
+    display:none;
+    background:#F2F5FA;
+}
+.th1{
+    border:none;
+    border-bottom: 1px solid #d6d5d5;
+    background:#fff;
+    padding:15px;
+}
+.table2{
+    border:none;
+    margin-top:3em;
+}
+.but1:hover{
+    background: #b8ffb8;
+}
+.but2:hover{
+    background: #ff9b9b;
+}
+.but1{
+    padding: 5px 15px;
+    border-radius: 5px;
+    border: 1px solid #cccccc;
+    background: #fff;
+    cursor: pointer;
+    outline: none;
+}
+.box3{
+    display:block;
+}
+.black{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.48);
+    top: 0;
+    left: 0;
+    display:none;
+}
+.input1{
+    margin-top: 22px;
+    width: 135px;
+    border-radius: 5px;
+    border: 1px solid #d4d4d4;
+    margin-left: 17px;
+}
+.popup{
+    background: #fff;
+    position: absolute;
+    top: 13em;
+    left: 43%;
+    width: 200px;
+    height: 200px;
+    border-radius: 6px;
+    padding: 18px;
+    display:none;
+}
+.but3{
+    display: block;
+    margin: auto;
+    padding: 6px 14px;
+    border-radius: 6px;
+    border: none;
+    margin-top: 25px;
+    background: #2f84cc;
+    color: #fff;
+    cursor: pointer;
+    outline:none;
+}
+.view{
+    font-size: 15px;
+    padding: 13px;
+    background:#3da7ff;
+    color: #fff;
+    border-bottom: 1px solid #bfbebe;
+    cursor: pointer;
+    text-align:center;
+}
+h2{
+    display: inline-block;
+    font-family:sans-serif;
+}
+.pad{
+    padding:10px;
+}
+#myCLass{
+    height:calc(100% - 56px);
+    top:56px;
+    width:83.5%;
+    left:16.5%;
+    position:absolute;
+    background:white;
+}
+    </style>
+</head>
+    <body>
+        <main>
+            <header>
+                <img class="logo" src="https://vijaykumar-7336.zcodeusers.com/project/image/content.png"/>
+                <h2 id="scname">School Name</h2>
+                <i class="fa fa-user-circle-o font" aria-hidden="true" id="profile1"></i>
+                <span class="clear"></span>
+            </header>
+            <div class="empty"></div>
+                <div class="profile">
+                    <aside class="as">
+                        <i class="fa fa-user-circle-o  st" aria-hidden="true"></i>
+                    </aside>
+                    <aside class="as as1">
+                        <p class="p2 p3" id="email5">Email id</p>
+                    </aside>
+                    <div class="butdiv">
+                        <button class="but4">Sign Out</button>
+                    </div>
+                </div>
+            <div class="cont">
+                <nav>
+                    <ul>
+                        <li id="myclass">My Details</li>
+                        <li id="todayt">Today Classes</li>
+                        <li id="parent">Parent Meeting</li>
+                        <li id="leave">Leave Request</li>
+                        <li id="time">Time Table</li>
+                        <li id='homepost'>Post</li>
+                    </ul>
+                </nav>
+                <div class="box1 box" id="times">
+                    <div class="timetable">
+                        <table class="table1">
+                            <tr>
+                                <th>Days</th>
+                                <th>1</th>
+                                <th>2</th>
+                                <th>3</th>
+                                <th>4</th>
+                                <th>5</th>
+                                <th>6</th>
+                                <th>7</th>
+                                <th>8</th>
+                            </tr>
+                            <tr>
+                                <td>Monday</td>
+                                <td id="W1">subject</td>
+                                <td id="W2">subject</td>
+                                <td id="W3">subject</td>
+                                <td id="W4">subject</td>
+                                <td id="W5">subject</td>
+                                <td id="W6">subject</td>
+                                <td id="W7">subject</td>
+                                <td id="W8">subject</td>
+                            </tr>
+                            <tr>
+                                <td>Tuesday</td>
+                               <td id="U1">subject</td>
+                                <td id="U2">subject</td>
+                                <td id="U3">subject</td>
+                                <td id="U4">subject</td>
+                                <td id="U5">subject</td>
+                                <td id="U6">subject</td>
+                                <td id="U7">subject</td>
+                                <td id="U8">subject</td>
+                            </tr>
+                            <tr>
+                                <td>Wednesday</td>
+                                <td id="X1">subject</td>
+                                <td id="X2">subject</td>
+                                <td id="X3">subject</td>
+                                <td id="X4">subject</td>
+                                <td id="X5">subject</td>
+                                <td id="X6">subject</td>
+                                <td id="X7">subject</td>
+                                <td id="X8">subject</td>
+                            </tr>
+                            <tr>
+                                <td>Thurday</td>
+                                <td id="Y1">subject</td>
+                                <td id="Y2">subject</td>
+                                <td id="Y3">subject</td>
+                                <td id="Y4">subject</td>
+                                <td id="Y5">subject</td>
+                                <td id="Y6">subject</td>
+                                <td id="Y7">subject</td>
+                                <td id="Y8">subject</td>
+                            </tr>
+                            <tr>
+                                <td>Friday</td>
+                                <td id="Z1">subject</td>
+                                <td id="Z2">subject</td>
+                                <td id="Z3">subject</td>
+                                <td id="Z4">subject</td>
+                                <td id="Z5">subject</td>
+                                <td id="Z6">subject</td>
+                                <td id="Z7">subject</td>
+                                <td id="Z8">subject</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class=" box1 box2" id="leaveacc">
+                    <table class="table1 table2" id="tabletime">
+                        <tr>
+                            <th class='th'>NO</th>
+                            <th class='th'>Student Name</th>
+                            <th class='th'>Reason</th>
+                            <th class='th'>Days</th>
+                            <th class='th'>Accept</th>
+                        </tr>
+                    </table>
+                </div>
+                <div  class="box1 box3">
+                    <table class="table1 table2" id="ptme">
+                        <tr>
+                            <th class='th'>NO</th>
+                            <th class='th'>Check</th>
+                            <th class='th'>Parent Name</th>
+                            <th class='th'>Student Name</th>
+                            <th class='th'>description</th>
+                        </tr>
+                        <tr>
+                            <td class='th'>1</td>
+                            <td class='th'>
+                                <input type="checkbox" class="check"/>
+                            </td>
+                            <td class='th'>vijay</td>
+                            <td class='th'>vijaykumar</td>
+                            <td class='th'>hbjkdohdu</td>
+                            
+                        </tr>
+                    </table>
+                    <div class="black"></div>
+                    <div class="popup">
+                        Date:<input type="date" class="input1" id="input1">
+                        Time:<input type="time" class="input1" id="input2">
+                        <button class="but3" id="ok">OK</button>
+                        <button class="but3" id="cancel">Cancel</button>
+                    </div>
+                </div>
+                <div class="box1 box4">
+                    <table class="table1 table2" id="toclass">
+                        <tr>
+                            <th class='th'>Class Name</th>
+                            <th class='th'>Hours</th>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div id="myCLass">
+                <p id="classt" class="pad">Teacher name</p>
+                <p id="subjectName" class="pad">Subject name</p>
+                <p id="classn" class="pad">Class</p>
+            </div>
+        </main>
+    </body>
+</html>

@@ -1,0 +1,112 @@
+<!Doctype html>
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script>
+        function loadDoc() {
+            $("#demo1,#demo2,#demo3,#demo4").text("");
+            var count=0;
+            var a=$("#name").val();
+            var b=$("#age").val();
+            var c=$("#email").val();
+            var d=$("#password").val();
+            if((/^[a-zA-Z]{3,20}$/gi).test(a)!==true){
+                count++;
+                $("#demo1").text('use alphabets for filling the name field');
+            }
+            if(b>0&&b<=100){
+            }
+            else{
+                count++;
+                $("#demo2").text('Enter a valid age');
+            }
+            if( (/^[a-zA-Z0-9]{3,15}[\.]{0,1}[a-zA-Z0-9]{0,10}[@][a-zA-Z0-9]{4,8}(.com)$/gi).test(c)!==true){
+                 $("#demo3").text('Enter a valid email');
+                 count++;
+            }
+            if(d.length>=8){
+            }
+            else{
+                 $("#demo4").text('password contains minimum 8 characters');
+                count++;
+            }
+            if(count==0){
+            var ajax="Name="+a+"&Age="+b+"&Email="+c+"&Password="+d;
+            var xhttp = new XMLHttpRequest();              
+            xhttp.onreadystatechange = function() {                
+            if(this.readyState == 4 && this.status == 200) { 
+            document.getElementById('demo').innerHTML=this.responseText;
+            if(this.responseText=="Signup successfully"){
+            if(document.cookie==""){
+            location.href="/signin";
+            }
+            else {
+                location.href="/home";
+            }
+            }
+            }              
+            };              
+            xhttp.open("POST", "/record",true);              
+            xhttp.send(ajax);            
+            }   
+        }
+        function change(){
+            location.href="/signin";
+        }
+        </script>
+        <style>
+            #main{
+                margin:auto;
+                width:40%;
+                border:1px solid black;
+                background:lightblue;
+            }
+            input{
+                height:24px;
+                width:300px;
+                margin-left:5px;
+                border:none;
+                outline:none;
+                border-bottom:2px solid grey;
+            }
+             #p1{
+                margin-left:30%;
+                font-size:30px;
+                font-weight:bold;
+            }
+            .c{
+              font-size:21px;  
+            }
+            #a1{
+                height:30px;
+                width:70px;
+                border:none;
+                color:white;
+                margin-left:45%;
+                background:blue;
+                text-align:center;
+                cursor:pointer;
+            }
+            #signedin{
+                cursor:pointer;
+                color:green;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="main">
+        <p id="p1">SIGNUP FORM</p>
+        <p class="c">Name</p><input type="text" id="name">
+        <p id="demo1"></p>
+        <p class="c">Age</p><input type="Number" id="age">
+        <p id="demo2"></p>
+        <p class="c">Email</p><input type="text" id="email">
+        <p id="demo3"></p>
+        <p class="c">Password</p><input type="password" id="password">
+        <p id="demo4"></p><br><br>
+        <button id="a1" type="submit" onclick="loadDoc()">Submit</button>
+        <p id="demo"></p>
+        <p id="signedin" onclick="change()"><u>Already have an account?</u></p>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,292 @@
+*{
+    margin:0px;
+    padding:0px;
+}
+body,html{
+    width:100%;
+    height:100%;
+    font-family:sans-serif;
+}
+main{
+    width:100%;
+    height:100%;
+    border: 1px solid transparent;
+    box-sizing: border-box;
+    position:relative;
+}
+header{
+    padding: 0px 10px;
+    background:#3da7ff;
+    position:relative;
+}
+.logo{
+    width: 60px;
+    vertical-align: middle;
+}
+h2{
+    display: inline-block;
+    font-family:sans-serif;
+    color:#fff;
+}
+.rig{
+    float: right;
+}
+.clear{
+    clear:right;
+}
+.clr1{
+    color: #ec0014;
+}
+.clr2{
+    color: #185898;
+}
+.clr3{
+    color: #6db827;
+}
+.font{
+    font-size: 30px !important;
+    padding: 11px;
+    float: right;
+    color: #fff;
+    cursor: pointer;
+}
+.cont{
+    height: calc(100% - 56px);
+    display:flex;
+}
+nav{
+    width: 16%;
+    border-right: 1px solid gray;
+    height: 100%;
+}
+ul{
+    list-style-type: none;
+}
+li{
+    text-align: left;
+    padding: 15px 15px 15px 32px;
+}
+.box1{
+    width:84%;
+    height:100%;
+    padding:2em;
+    box-sizing: border-box;
+    overflow:auto;
+}
+.timetable{
+    margin-top:2em;
+    background-color:#fff;
+    border:1px solid transparent;
+    box-sizing:border-box;
+}
+
+.box5{
+    display:none;
+}
+.p1{
+        padding: 15px 35px 0px;
+}
+.tab{
+    overflow: auto;
+    margin-top: 24px;
+    margin-left: 30px;
+}
+.profile{
+    position: absolute;
+    background: #fff;
+    right: 0;
+    width: 20%;
+    height: 115px;
+    top: 0;
+    box-shadow: 0px 0px 0px 1.5px #b9b9b9;
+    display:none;
+}
+.as{
+    width: 37%;
+    float: left;
+    height: 70px;
+}
+.p2{
+     margin-top: 14px;
+    margin-left: 10px;
+    font-size: 17px; 
+}
+.p3{
+    font-size: 15px;
+    font-weight: 400;
+}
+.butdiv{
+    background: #f4f4f4;
+    height: 40px;
+    margin-top: 75px;
+}
+.but4{
+    float: right;
+    padding: 5px 13px;
+    margin-right: 9px;
+    background: #888;
+    margin-top: 10px;
+    outline: none;
+    cursor: pointer;
+    border: none;
+}
+.st{
+    color: black;
+    font-size: 40px !important;
+    float: left;
+    margin-left: 10px;
+}
+.as1{
+    width:58%;
+}
+.empty{
+    width:100%;
+    height:100%;
+    position:absolute;
+    top:0;
+    left:0;
+    display:none;
+}
+.box-4{
+    width:60%;
+    height:85px;
+}
+.user{
+    font-size: 2em !important;
+    vertical-align: top;
+}
+.input-1{
+    width: 80%;
+    height: 35px;
+    border: 1px solid #d5d5d5;
+    margin-left: 20px;
+    border-radius: 2px;
+    resize: none;
+    outline: none;
+}
+.but-1{
+        display: block;
+    padding: 8px 22px;
+    float: right;
+    margin-right: 68px;
+    cursor: pointer;
+    background: #3da7ff;
+    border: 1px solid #fff;
+    color: #fff;
+    border-radius: 3px;
+}
+.cont-box{
+    display: inline-block;
+    width: 80%;
+    margin-left: 20px;
+    border: 1px solid #c5c5c5;
+    border-radius: 3px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+.span-1{
+    display: block;
+    padding-top: 7px;
+    font-size: 13px;
+    color: gray;
+}
+.name-1{
+    display: inline-block;
+    color: #3da7ff;
+    font-size: 16px;
+    font-family: sans-serif;
+}
+.name-2{
+    display: inline-block;
+    color: #a9a7a7;
+    font-size: 14px;
+    padding: 0px 3px;
+}
+.sent{
+    padding: 10px;
+    font-size: 17px;
+}
+.like{
+    font-size: 12px !important;
+    cursor: pointer;
+}
+.span-2{
+    padding: 2px 30px 2px 2px;
+    font-size: 12px;
+    cursor: pointer;
+}
+.comment-box{
+    width: 80%;
+    border: 1px solid #c1c1c1;
+    margin-left: 56px;
+    height: 55px;
+    border-radius: 3px;
+    display:none
+}
+.user-1{
+    font-size: 25px !important;
+    padding: 10px;
+    vertical-align: bottom;
+}
+.text-1{
+    width: 66%;
+    resize: none;
+    outline: none;
+}
+.but-2{
+    margin-right: 15px;
+    margin-top: 9px;
+}
+#connectalert{
+    padding-left: 19em;
+    display: inline-block;
+    color: #fff;
+    font-size: 17px;
+    font-family: sans-serif;
+    display:none;
+}
+#cliq{
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:black;
+    top:0;
+    right:0;
+    display:none;
+}
+#center{
+    position:absolute;
+    width:20%;
+    height:20%;
+    background:white;
+    top:40%;
+    right:40%;
+}
+.common{
+    width:35%;
+    border: none;
+    outline: none;
+    font-weight:bolder;
+    text-align:center;
+    margin-top:18%;
+    margin-left:10%;
+    overflow:auto;
+    height:20%;
+    background-color:blue;
+    color:white;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,34 @@
+<!Doctype html>
+<html>
+    <head>
+       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+       <style>
+       #inp1,#inp2{
+           margin-left:1px;
+       }
+       </style>
+    </head>
+    <body>
+        Name<input id='inp1' type="text">
+        Age<input id='inp2' type="number">
+        <button id="editing">Edit</button>
+        <p id="demo"></p>
+        <script>
+        $("#editing").click(function(){
+        if($("#inp1").val()!==""&&$("#inp2").val()!==""){
+            alert("alkdsjdfjf");
+            $.post("/edited",{
+                Name:$("#inp1").val(),
+                Age:$("#inp2").val()},
+                function(data,status){
+                    $("#demo").text(data);
+                    location.href="/home";
+            });
+            }
+            else{
+                $("#demo").text("fields should not be empty");
+            }
+            });
+        </script>
+    </body>
+</html>

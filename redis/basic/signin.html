@@ -1,0 +1,43 @@
+<!Doctype html>
+<html>
+    <head>
+        <title>Form</title>
+        <script>      
+        function loadDoc() { 
+        var xhttp = new XMLHttpRequest();              
+        xhttp.onreadystatechange = function() {                
+        if(this.readyState == 4 && this.status == 200) { 
+            var value1=this.responseText;
+            document.getElementById("demo1").innerHTML = value1;
+            if(value1=="sign in successfully"){
+            location.href="/home";
+            }
+        }              
+        };              
+        var ans = document.getElementById("email1").value;              
+        var ans1 = document.getElementById("password1").value;  
+        var ajax="email="+ans+"&passwd="+ans1;
+         xhttp.open("POST", "/login",true);             
+         xhttp.send(ajax);               
+        }        
+        </script>
+        <style>
+             input{
+                border:none;
+                outline:none;
+                border-bottom:1px solid grey;
+            }
+            #email1{
+                margin-left:72px;
+            }
+            #password1{
+                margin-left:50px;
+            }
+        </style>
+    </head>
+    <body>
+        Email<input type="text" name="email" placeholder="Enter the email" id="email1"><br><br>
+        Password<input type="password" name="passwd" placeholder="Enter the password" id="password1"><br><br>
+        <button onclick="loadDoc()">Signin</button>
+        <p id="demo1"></p>
+</html>

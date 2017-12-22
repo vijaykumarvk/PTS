@@ -1,0 +1,443 @@
+<!doctype html>
+<html>
+    <head>
+        <title>School home page</title>
+        <link rel="stylesheet" type="text/css" href="https://vijaykumar-7336.zcodeusers.com/project/school_homepage.css"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://vijaykumar-7336.zcodeusers.com/project/school_frontpage.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    <body>
+        <main>
+            <header id="headers">
+                <img class="logo" src="https://vijaykumar-7336.zcodeusers.com/project/image/content.png"/>
+                <h2 id="sname">School Name</h2>
+                <ul class="rig">
+                    <li class="userli" id="auser">Login person</li>
+                    <li class="userli">
+                        <img class="user" src="https://vijaykumar-7336.zcodeusers.com/project/image/user.png"/>
+                    </li>
+                </ul>
+                <p class="clear"></p>
+                <div class="userdiv">
+                    <span class="view view1" id="viewEdit">View/Edit profile</span>
+                    <span class="view" id="viewPass">Change password</span>
+                    <span class="view" id="view">Logout</span>
+                </div>
+            </header>
+            <div class="form">
+                <div class="signup">
+                    <h2 class="h2">SCHOOL DETAILS</h2>
+                    <div class="signup1">
+                        <div class="section1">
+                            <span class="word1">Type of school</span>
+                            <span class="word1">Address of school</span> 
+                            <span class="word1">Established in</span>
+                            <span class="word1">HM name</span>
+                        </div>
+                        <div class="section1">
+                           <p id="alertd1">afasdfsd</p>
+                            <select class="type" id="dinp2" >
+                                <option>-----------</option>
+                                <option>Primary school</option>
+                                <option>Middle school</option>
+                                <option>High school</option>
+                                <option>Higher secondary school</option>
+                            </select>
+                            <p id="alertd2">bcgshsardtku</p>
+                            <textarea class="input2" id="dinp3" ></textarea>
+                            <p id="alertd3">tfwgdyshiuqja</p>
+                            <input class="inputbox1 mrg"  id="dinp4" type="number"/>
+                            <p id="alertd4">gvsdbjka</p>
+                            <input class="inputbox1 mrg1" type="text" id="dinp5" />
+                            <p id="alertd5">gjbdhkamlTYUGXSHIJ</p>
+
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                    <button class="but1 but2" id="esignup">SAVE</button>
+                </div>
+            </div>
+            <div class="cont">
+                <div class="row1">
+                    <div class="circle" id="circle1">
+                        <img class="pic" src="https://vijaykumar-7336.zcodeusers.com/project/image/timetable.png" />
+                        <span>Time table</span>
+                    </div>
+                    <div class="circle" id="circle2">
+                        <img class="pic" src="https://vijaykumar-7336.zcodeusers.com/project/image/teacher.png" />
+                        <span>Teacher</span>
+                    </div>
+                    <div class="circle" id="circle3">
+                        <img class="pic" src="https://vijaykumar-7336.zcodeusers.com/project/image/class.png" />
+                        <span>Class</span>
+                    </div>
+                </div>
+                <div class="row1 mrg">
+                    <div class="circle cir" id="circle4">
+                        <img class="pic" src="https://vijaykumar-7336.zcodeusers.com/project/image/student.png" />
+                        <span>Student</span>
+                    </div>
+                    <div class="circle cir1" id="circle5">
+                        <p></p>
+                        <img class="pic" src="https://vijaykumar-7336.zcodeusers.com/project/image/parent.png" />
+                        <span>parent</span>
+                    </div>
+                </div>
+            </div>
+            <div class="empty1" id="empty1">
+                <ul class="primary" id="higher">
+                    <li class="word" id="one">1st class</li>
+                    <li class="word" id="two">2nd class</li>
+                    <li class="word" id="three">3rd class</li>
+                    <li class="word" id="four">4th class</li>
+                    <li class="word" id="five">5th class</li>
+                    <li class="word" id="six">6th class</li>
+                    <li class="word" id="seven">7th class</li>
+                    <li class="word" id="eight">8th class</li>
+                    <li class="word ten" id="nine">9th class</li>
+                    <li class="word ten" id="ten">10th class</li>
+                    <li class="word eleven" id="eleven">11th class</li>
+                    <li class="word eleven" id="twelve">12th class</li>
+                </ul>
+            </div>
+            <div class="tablediv" id="timetable">
+                <header class="head">
+                    <h1 id="htime">TIME TABLE</h1>
+                    <i class="fa fa-times-circle-o cross" aria-hidden="true"></i>
+                    <p class="clear"></p>
+                </header>
+                <div class="timetable">
+                    <table class="table1">
+                        <tr>
+                            <th>Days</th>
+                            <th>1</th>
+                            <th>2</th>
+                            <th>3</th>
+                            <th>4</th>
+                            <th>5</th>
+                            <th>6</th>
+                            <th>7</th>
+                            <th>8</th>
+                        </tr>
+                        <tr>
+                            <td>Monday</td>
+                            <td class="tds" id="M1">subject</td>
+                            <td class="tds" id="M2">subject</td>
+                            <td class="tds" id="M3">subject</td>
+                            <td class="tds" id="M4">subject</td>
+                            <td class="tds" id="M5">subject</td>
+                            <td class="tds" id="M6">subject</td>
+                            <td class="tds" id="M7">subject</td>
+                            <td class="tds" id="M8">subject</td>
+                        </tr>
+                        <tr>
+                            <td>Tuesday</td>
+                            <td class="tds" id="T1">subject</td>
+                            <td class="tds" id="T2">subject</td>
+                            <td class="tds" id="T3">subject</td>
+                            <td class="tds" id="T4">subject</td>
+                            <td class="tds" id="T5">subject</td>
+                            <td class="tds" id="T6">subject</td>
+                            <td class="tds" id="T7">subject</td>
+                            <td class="tds" id="T8">subject</td>
+                        </tr>
+                        <tr>
+                            <td>Wednesday</td>
+                            <td class="tds" id="W1">subject</td>
+                            <td class="tds" id="W2">subject</td>
+                            <td class="tds" id="W3">subject</td>
+                            <td class="tds" id="W4">subject</td>
+                            <td class="tds" id="W5">subject</td>
+                            <td class="tds" id="W6">subject</td>
+                            <td class="tds" id="W7">subject</td>
+                            <td class="tds" id="W8">subject</td>
+                        </tr>
+                        <tr>
+                            <td>Thurday</td>
+                            <td class="tds" id="TH1">subject</td>
+                            <td class="tds" id="TH2">subject</td>
+                            <td class="tds" id="TH3">subject</td>
+                            <td class="tds" id="TH4">subject</td>
+                            <td class="tds" id="TH5">subject</td>
+                            <td class="tds" id="TH6">subject</td>
+                            <td class="tds" id="TH7">subject</td>
+                            <td class="tds" id="TH8">subject</td>
+                        </tr>
+                        <tr>
+                            <td>Friday</td>
+                            <td class="tds" id="F1">subject</td>
+                            <td class="tds" id="F2">subject</td>
+                            <td class="tds" id="F3">subject</td>
+                            <td class="tds" id="F4">subject</td>
+                            <td class="tds" id="F5">subject</td>
+                            <td class="tds" id="F6">subject</td>
+                            <td class="tds" id="F7">subject</td>
+                            <td class="tds" id="F8">subject</td>
+                        </tr>
+                    </table>
+                    <button id="save" class="but2" style="width:100px">save</button>
+                    <p id="timeshow" style="display:none;color:black;font-size:25px;margin-left:550px">show</p>
+                </div>
+            </div>
+            <div class="temp1"></div>
+            <div class="tablediv" id="teachers">
+                <header class="head">
+                    <h1>Teachers</h1>
+                    <i class="fa fa-times-circle-o cross" aria-hidden="true" style="float:right"></i>
+                    <i class="fa fa-plus-circle cross" id="addteach" aria-hidden="true"></i>
+                    <p class="clear"></p>
+                </header>
+                <div class="timetable">
+                    <table class="table1" id="special">
+                        <tr>
+                            <th>Teacher Name</th>
+                            <th>Subject</th>
+                            <th>Class</th>
+                        </tr>
+                        <tr>
+                            <td id="teach1">vijay</td>
+                            <td id="teach2">programing</td>
+                            <td id="teach3">12th</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <!--11-->
+            <div class="temp2"></div>
+            <div class="tablediv" id="students">
+                <header class="head">
+                    <h1>Students</h1>
+                    <i class="fa fa-times-circle-o cross" aria-hidden="true"  style="float:right"></i>
+                    <i class="fa fa-plus-circle cross" id="addstudent" aria-hidden="true"></i>
+                    <p class="clear"></p>
+                </header>
+                        <div  class="timetable" id="student">
+                    <table class="table1" id="special1">
+                        <tr>
+                            <th>Student Name</th>
+                            <th>Subject</th>
+                            <th>Parent Name</th>
+                        </tr>
+                        <tr>
+                            <td id="stud1"></td>
+                            <td id="stud2"></td>
+                            <td id="stud3"></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="signup sig">
+                <h2 class="h2">TEACHER DETAILS</h2>
+                <div class="sec">
+                    <span class="word2" >Teacher Name</span>
+                    <span class="word2">Qualification</span>
+                    <span class="word2">Class</span>
+                    <span class="word2">Subject</span>
+                    <span class="word2">Email</span>
+                    <span class="word2">Password</span>
+                </div>
+                <div class="sec sec1">
+                    <input type="text" class="input3" id="tinp1"/>
+                    <input type="text" class="input3" id="tinp6"/>
+                    <select class="input3 mrgn" id="tinp5">
+                        <option>-----</option>
+                        <option>1st</option>
+                    </select>
+                    <select class="input3 mrgn" id="tinp4">
+                        <option>----------</option>
+                        <option>Tamil</option><option>English</option><option>Maths</option><option>Science</option><option>Social</option>
+                    </select>
+                    <input type="text" class="input3 input4"  id="tinp7"/>
+                    <input type="email" class="input3 mrgn2" id="tinp2"/>
+                    <input type="password" class="input3 mrgn2" id="tinp3"/>
+                </div>
+                <div class="clear"></div>
+                <button class="but1 but2" id="tsignup">SUBMIT</button>
+                 <p id="demo" style="color:black;font-size:20px;text-align:center;margin-top:10px"></p>
+                 </div>
+            <!---->
+             <div class="empty1" id="empty2">
+                <ul class="primary" id="higher">
+                    <li class="words" id="first">1st class</li>
+                    <li class="words" id="second">2nd class</li>
+                    <li class="words" id="third">3rd class</li>
+                    <li class="words" id="fourth">4th class</li>
+                    <li class="words" id="fifth">5th class</li>
+                    <li class="words" id="sixth">6th class</li>
+                    <li class="words" id="seventh">7th class</li>
+                    <li class="words" id="eighth">8th class</li>
+                    <li class="words ten" id="nineth">9th class</li>
+                    <li class="words ten" id="tenth">10th class</li>
+                    <li class="words eleven" id="eleventh">11th class</li>
+                    <li class="words eleven" id="twelveth">12th class</li>
+                </ul>
+            </div>
+               <div class="empty1" id="empty3">
+                    <ul class="primary" id="higher">
+                    <li class="words1" id="fir">1st class</li>
+                    <li class="words1" id="sec">2nd class</li>
+                    <li class="words1" id="thi">3rd class</li>
+                    <li class="words1" id="fou">4th class</li>
+                    <li class="words1" id="fif">5th class</li>
+                    <li class="words1" id="six">6th class</li>
+                    <li class="words1" id="sev">7th class</li>
+                    <li class="words1" id="eig">8th class</li>
+                    <li class="words1 ten" id="nin">9th class</li>
+                    <li class="words1 ten" id="ten1">10th class</li>
+                    <li class="words1 eleven" id="ele">11th class</li>
+                    <li class="words1 eleven" id="twe">12th class</li>
+                </ul>
+            </div>
+             <div class="tablediv" id="class">
+                <header class="head">
+                    <h1 id="cname">Class Name</h1>
+                    <i class="fa fa-times-circle-o cross" aria-hidden="true"></i>
+                    <p class="clear"></p>
+                </header>
+                <div class="timetable">
+                    <p id="Tname" class="p3"></p>
+                    <table class="table1">
+                        <tr>
+                            <td class="sub">Teacher Email</td>
+                            <td id="C1" class="tds">Email</td>
+                            <td id="C2" class="tds">Email</td>
+                            <td id="C3" class="tds">Email</td>
+                            <td id="C4" class="tds">Email</td>
+                            <td id="C5" class="tds">Email</td>
+                            <td id="C6" class="tds">Email</td>
+                        </tr>
+                        <tr>
+                            <td class="sub">Teacher names</td>
+                            <td id="A1">Name</td>
+                            <td id="A2">Name</td>
+                            <td id="A3">Name</td>
+                            <td id="A4">Name</td>
+                            <td id="A5">Name</td>
+                            <td id="A6">Name</td>
+                        </tr>
+                        <tr>
+                            <td class="sub">Subjects</td>
+                            <td id="B1">Subject</td>
+                            <td id="B2">Subject</td>
+                            <td id="B3">Subject</td>
+                            <td id="B4">Subject</td>
+                            <td id="B5">Subject</td>
+                            <td id="B6">Subject</td>
+                        </tr>
+                    </table>
+                      <button type="button" class="but2" id="save1" style="width:100px">save</button>
+                      <p id="sample" style="display:none;color:black;font-size:25px;margin-left:550px"></p>
+                </div>
+            </div>
+        </main>
+        <div id='studdiv'>
+            <div class="signup" style='border:1px solid #D3D3D3'>
+                    <h2 class="h2">STUDENT DETAILS</h2>
+              <div class="signup1">
+                        <div class="section1">
+                            <span class="word1">Name</span>
+                            <span class="word1">Email</span>
+                            <span class="word1">Password</span>
+                            <span class="word1">Class</span> 
+                            <span class="word1">Parent Name</span>
+                            <span class="word1">Parent Email</span>
+                        </div>
+                        <div class="section1 section5">
+                            <input class="inputbox1 mrg"  id="stinp1" type="text"/>
+                            <p class="para">asdfsdfdfddfdfd</p>
+                            <input class="inputbox1 mrg1" type="text" id="stinp2" />
+                            <p class="para">asdfsdfdfddfdfd</p>
+                            <input class="inputbox1 mrg1" type="password" id="stinp3" />
+                            <p class="para">asdfsdfdfddfdfd</p>
+                            <select class="type" id="stinp4" style="width:1"><option>1</option></select>
+                            <p class="para">asdfsdfdfddfdfd</p>
+                            <input class="inputbox1 mrg"  id="stinp5" type="text"/>
+                            <p class="para">asdfsdfdfddfdfd</p>
+                            <input class="inputbox1 mrg1" type="text" id="stinp6" />
+                            <p class="para">asdfsdfdfddfdfd</p>
+                        </div>
+                    <div class="clear"></div>
+                   <button class="but1 but2" id="addstud">Submit</button>
+                   <button class="but1 but2" id="close">Close</button>
+                    <p id="demoal"></p>
+                   </div>
+                   </div>
+        </div>
+        <div id="profile" style="display:none"> 
+        
+        <div class="form" style='display:block;background:white'>
+                <div class="signup" style='border:1px solid #D3D3D3'>
+                    <h2 class="h2">SCHOOL DETAILS</h2>
+                    <div class="signup1">
+                        <div class="section1">
+                            <span class="word1">School name</span>
+                            <span class="word1">HM name</span>
+                            <span class="word1">Type of school</span>
+                            <span class="word1">Address of school</span> 
+                            <span class="word1">Established in</span>
+                            <span class="word1">Mobile no</span>
+                        </div>
+                        <div class="section1 section5">
+                            <input class="inputbox1 mrg"  id="proinp1" type="text"/>
+                            <p class="para">asdfsdfdfddfdfd</p>
+                            <input class="inputbox1 mrg1" type="text" id="proinp2" />
+                            <p class="para">asdfsdfdfddfdfd</p>
+                            <select class="type" id="proinp3" >
+                                <option>-----------</option>
+                                <option>Primary school</option>
+                                <option>Middle school</option>
+                                <option>High school</option>
+                                <option>Higher secondary school</option>
+                            </select>
+                            <p class="para">asdfsdfdfddfdfd</p>
+                            <textarea class="input2" id="proinp4" ></textarea>
+                            <p class="para">asdfsdfdfddfdfd</p>
+                            <input class="inputbox1 mrg"  id="proinp5" type="number"/>
+                            <p class="para">asdfsdfdfddfdfd</p>
+                            <input class="inputbox1 mrg1" type="number" id="proinp6" />
+                            <p class="para">asdfsdfdfddfdfd</p>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                    <button class="but1 but2" id="prosignup">SAVE</button>
+                    <button class="but1 but2" id="closepro">CLOSE</button>
+                </div>
+            </div>
+        </div>
+        <div id="adpar">
+            Name<input type="text" id="pinp2"><br><br><br>
+            Email<input type="text" id="pinp3"><br><br><br>
+            Password<input type="password" id="pinp4"><br><br><br>
+            <button id="addpar">send mail</button>
+            <button class="close">close</button>
+            <p id="palert"></p>
+        </div>
+        <div id="passwrd">
+            Current password<input id='curpass' type="password"><br><br><br>
+            New password<input id="newpass" type="password"><br><br><br>
+            <button id="changed">Change</button>
+            <button class="close">close</button>
+        </div>
+        <script>
+            $(function(){
+                setTimeout(cookie,500);
+            });
+            function cookie(){
+                    cookies=document.cookie.split("=");
+                    $.get("/cookieGet",{
+                        Email:cookies[1]
+                    },function(data,status){
+                       data = JSON.parse(data);
+                       keys = Object.keys(data);
+                       if(keys.length==5){
+                           $(".form").show();
+                       }
+                       $("#sname").text(data.Name);
+                       $("#auser").text(data.HM);
+                    });
+            }
+        </script>
+    </body>
+</html>

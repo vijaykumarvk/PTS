@@ -1,0 +1,210 @@
+<!doctype html>
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <title>SCHOOL MANAGEMENT</title>
+        <link rel="stylesheet" type="text/css" href="https://vijaykumar-7336.zcodeusers.com/project/connect.css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+         <script src="https://vijaykumar-7336.zcodeusers.com/project/school_frontpage.js"></script>
+    <script>
+    var Month=["January","February","March","April","May","June","July","August","September",'October',"November","December"];
+    $(document).ready(function(){
+        $("#box-4").empty();
+        $.get("/cookieGet",{"Email":document.cookie.split("=")[1]},function(data,status){
+            data=JSON.parse(data);
+            $(".p2").text(data.Name);
+            $(".p3").text(data.Email);
+            if(data.Class!==undefined){
+               $.get("/postgets",{"Class":data.Class},function(data3,status){
+                if(data3!=="no posts"){
+                 data3=JSON.parse(data3);
+                 data3=data3.split(",");
+                 for(i=0;i<data3.length;i+=2){
+                 split1=data3[i].split(";");
+                 $("#box-4").append("<br><br>");
+                 $("#box-4").append("<i class='fa fa-user-circle-o user' aria-hidden='true'></i>");
+                 $("#box-4").append('<div class="cont-box" style="margin-left:25px"><p class="name-1">'+data3[i+1]+'</p><p class="name-2">has started the conversation</p><span class="span-1">'+split1[1]+'</span><p class="sent">'+split1[0]+'</p><i class="fa fa-heart-o like" aria-hidden="true"></i><span class="span-2">Like</span><i class="fa fa-commenting-o like" aria-hidden="true"></i><span class="span-2">Comment</span></div>');   
+                }
+                }
+                else {
+                    $("#box-4").html("No posts").css("text-align","center");
+                }
+            });
+            }
+            else{
+                array=[],count=0;
+                $.get("/viewpar",{"Email":document.cookie.split("=")[1]},function(data1,status){
+                if(data1!==""){
+                    data1=data1.split(",");
+                for(i=0;i<data1.length;i++){
+                    if(array.indexOf(data1[i])==-1){
+                        array.push(data1[i]);
+                    }
+                }
+                for(i=0;i<array.length;i++){
+                 $.get("/cookieGet",{"Email":array[i]},function(data5,status){
+                    data5=JSON.parse(data5);
+                    $.get("/postgets",{"Class":data5.Class},function(data3,status){
+                    if(data3!=="no posts"){
+                     data3=JSON.parse(data3);
+                     data3=data3.split(",");
+                     for(i=0;i<data3.length;i+=2){
+                     count++;
+                     split1=data3[i].split(";");
+                     $("#box-4").append("<br><br>");
+                     $("#box-4").append("<i class='fa fa-user-circle-o user' aria-hidden='true'></i>");
+                     $("#box-4").append('<div class="cont-box" style="margin-left:25px"><p class="name-1">'+data3[i+1]+'</p><p class="name-2">has started the conversation</p><span class="span-1">'+split1[1]+'</span><p class="sent">'+split1[0]+'</p><i class="fa fa-heart-o like" aria-hidden="true"></i><span class="span-2">Like</span><i class="fa fa-commenting-o like" aria-hidden="true"></i><span class="span-2">Comment</span></div>');   
+                    }
+                    }
+                    else {
+                        if(count==0){
+                          $("#box-4").html("No posts").css("text-align","center");
+                        }
+                        }
+                    }); 
+                 });
+                }
+                }
+                else{
+                    $("#box-4").html("No posts").css("text-align","center");
+                }
+                });
+            }
+        $(".but-1").click(function(){
+         if(data.Role=="Parent"){
+            $.get("/viewpar",{"Email":document.cookie.split("=")[1]},function(data7,status){
+                if(data7!==""){
+                    data7=data7.split(",");
+                    if(data7.length==1){
+                    $.get("/cookieGet",{"Email":data7[0]},function(data8,status){
+                     data8=JSON.parse(data8);
+                     if($(".input-1").val()!==""){
+                     a1=new Date().getDate();
+                     a2=new Date().getMonth();
+                     hours=[new Date().getHours(),new Date().getMinutes(),new Date().getSeconds()];
+                     str=a1+" "+Month[a2]+" "+hours[0]+":"+hours[1]+":"+hours[2];
+                     $("#box-4").prepend('<div class="cont-box" style="margin-left:25px"><p class="name-1">'+$(".p4").text()+'</p><p class="name-2">has started the conversation</p><span class="span-1">'+str+'</span><p class="sent">'+$(".input-1").val()+'</p><i class="fa fa-heart-o like" aria-hidden="true"></i><span class="span-2">Like</span><i class="fa fa-commenting-o like" aria-hidden="true"></i><span class="span-2">Comment</span></div>');
+                     $("#box-4").prepend("<i class='fa fa-user-circle-o user' aria-hidden='true'></i>");
+                     $.post("/postget",{"Name":$(".p4").text(),"Class":data8.Class,"Details":$(".input-1").val()+";"+str},function(data2,status){
+                            $("#connectalert").text(data2).css("display","inline-block").fadeOut(3000);
+                            $(".input-1").val('');
+                     });
+                     }
+                     else{
+                         $("#connectalert").text("Enter the post").css("display","inline-block").fadeOut(3000);
+                     }
+                    });
+                    }
+                    else if(data7.length==2){
+                        $("#cleft").text(data7[0]);
+                        $("#cright").text(data7[1]);
+                        $("#cliq").show();
+                    }
+            }
+            else{
+                $("#connectalert").text("Your kid is not exist").css("display","inline-block").fadeOut(3000);
+            }
+            });
+         }
+         else{
+           allposts(document.cookie.split("=")[1]);
+         }
+          $(".common").click(function()
+            {
+                alert($(this).text());
+                allposts($(this).text());
+                $("#cliq").hide();
+            });
+    });
+    $("#cliq").click(function(){
+        $(this).hide();
+    });
+  });
+});
+function allposts(a){
+      $.get("/cookieGet",{"Email":a},function(data,status){
+                        data=JSON.parse(data);
+             if($(".input-1").val()!==""){
+                     a1=new Date().getDate();
+                     a2=new Date().getMonth();
+                     hours=[new Date().getHours(),new Date().getMinutes(),new Date().getSeconds()];
+                     str=a1+" "+Month[a2]+" "+hours[0]+":"+hours[1]+":"+hours[2];
+                     $("#box-4").prepend('<div class="cont-box" style="margin-left:25px"><p class="name-1">'+$(".p4").text()+'</p><p class="name-2">has started the conversation</p><span class="span-1">'+str+'</span><p class="sent">'+$(".input-1").val()+'</p><i class="fa fa-heart-o like" aria-hidden="true"></i><span class="span-2">Like</span><i class="fa fa-commenting-o like" aria-hidden="true"></i><span class="span-2">Comment</span></div>');
+                     $("#box-4").prepend("<i class='fa fa-user-circle-o user' aria-hidden='true'></i>");
+                     $.post("/postget",{"Name":$(".p4").text(),"Class":data.Class,"Details":$(".input-1").val()+";"+str},function(data2,status){
+                            $("#connectalert").text(data2).css("display","inline-block").fadeOut(3000);
+                            $(".input-1").val('');
+                     });
+                     }
+                     else{
+                         $("#connectalert").text("Enter the post").css("display","inline-block").fadeOut(3000);
+                     }
+             });
+}
+    </script>
+    </head>
+    <body>
+        <main>
+            <header>
+                <img class="logo" src="https://vijaykumar-7336.zcodeusers.com/project/image/content.png"/>
+                <h2 class="clr1"><i>P</i></h2>
+                <h2 class="clr2"><i>T</i></h2>
+                <h2 class="clr3"><i>S</i></h2>
+                <h2><i> MANAGEMENT</i></h2>
+                <p id="connectalert">p[pkjlkjlkjljlk</p>
+                <i class="fa fa-user-circle-o font" id="ofont" aria-hidden="true"></i>
+                <sapn class="clear"></sapn>
+            </header>
+            <div class="empty"></div>
+                <div class="profile">
+                    <aside class="as">
+                        <i class="fa fa-user-circle-o font st" aria-hidden="true"></i>
+                    </aside>
+                    <aside class="as as1">
+                        <p class="p2 p4">Student Name</p>
+                        <p class="p2 p3">Email id</p>
+                    </aside>
+                    <div class="butdiv">
+                        <button class="but4">Sign Out</button>
+                    </div>
+                </div>
+            <div class="cont">
+                <nav>
+                    <ul>
+                        <li id="meet">My Feeds</li>
+                    </ul>
+                </nav>
+                <div class="box1 box">
+                    <div class="box-4">
+                        <i class="fa fa-user-circle-o user" aria-hidden="true"></i>
+                        <textarea type="text" class="input-1" palceholder="What's on your mind right now?"></textarea>
+                        <button class="but-1">POST</button>
+                    </div>
+                       <div class="box-4" id="box-4">
+                        <i class="fa fa-user-circle-o user" aria-hidden="true"></i>
+                        <div class="cont-box">
+                            <p class="name-1">VIJAY</p>
+                            <p class="name-2">has started the conversation</p>
+                            <span class="span-1">19 December 3:09 PM</span>
+                            <p class="sent">hello hi..</p>
+                            <i class="fa fa-heart-o like" aria-hidden="true"></i><span class="span-2">Like</span>
+                            <i class="fa fa-commenting-o like" aria-hidden="true"></i><span class="span-2">Comment</span>
+                        </div>
+                        <div class="comment-box">
+                            <i class="fa fa-user-circle-o user-1" aria-hidden="true"></i>
+                            <textarea class="text-1"></textarea>
+                            <button class="but-1 but-2">Share</button>
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <div id="cliq">
+            <div id="center">
+                <button class="common" id="cleft"></button>
+                <button class="common" id="cright"></button>
+            </div>
+        </div>
+    </body>
+</html>
